@@ -9,6 +9,7 @@ interface TravelFormData {
   origin: string;
   destination: string;
   duration: number;
+  budget?: number;
 }
 
 interface ParsedPlan {
@@ -185,7 +186,8 @@ const Home: NextPage = () => {
   const [formData, setFormData] = useState<TravelFormData>({
     origin: '日本',
     destination: 'タイ',
-    duration: 5
+    duration: 5,
+    budget: 200000
   });
   const [error, setError] = useState<string>('');
 
@@ -295,6 +297,26 @@ const Home: NextPage = () => {
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               disabled={isLoading}
             />
+          </div>
+
+          <div>
+            <label htmlFor="budget" className="block text-sm font-medium text-gray-700 mb-1">
+              予算（円）
+            </label>
+            <input
+              type="number"
+              id="budget"
+              name="budget"
+              min="0"
+              step="10000"
+              value={formData.budget}
+              onChange={handleInputChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              disabled={isLoading}
+            />
+            <p className="mt-1 text-sm text-gray-500">
+              ※予算を入力すると、より詳細な予算プランを提案します
+            </p>
           </div>
 
           {error && (

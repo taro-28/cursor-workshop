@@ -15,7 +15,7 @@ export default async function handler(
   }
 
   try {
-    const { origin, destination, duration } = req.body;
+    const { origin, destination, duration, budget } = req.body;
 
     // OpenAI APIの初期化
     const llm = new ChatOpenAI({
@@ -31,6 +31,7 @@ export default async function handler(
       origin,
       destination,
       duration,
+      budget: budget ? Number(budget) : undefined,
     });
 
     res.status(200).json({ content });
