@@ -53,7 +53,7 @@ const DEFAULT_INPUT = {
 async function main() {
   // OpenAI APIの初期化
   const llm = new ChatOpenAI({
-    modelName: "gpt-3.5-turbo",
+    modelName: "gpt-4o-mini",
     temperature: 0.7,
   });
 
